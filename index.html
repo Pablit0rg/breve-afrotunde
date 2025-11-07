@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afrotunde | Santuário Digital Em Construção</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* VARIÁVEIS DO TEMA LIGHT (TERROSA) */
+        :root {
+            --cor-fundo-base: #fcfaf5; /* Bege/Areia (Off-white) */
+            --cor-texto-principal: #3f3a34; /* Marrom-Escuro */
+            --cor-destaque-ori: #b78972; /* Terracota (Nosso Ouro) */
+            --cor-acento-secundario: #f0b8aa; /* Rosa Salmão */
+            --cor-ewe-verde: #4a5c4a; /* Verde Oliva Sutil (Isca Visual) */
+            --font-titulo: 'Cormorant Garamond', serif;
+            --font-texto: 'Inter', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-texto);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: var(--cor-fundo-base);
+            color: var(--cor-texto-principal);
+            text-align: center;
+            overflow: hidden;
+            transition: background-color 0.3s ease;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 50px 40px;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border-top: 5px solid var(--cor-destaque-ori); 
+        }
+
+        .coroa-icon {
+            font-size: 3.5rem;
+            line-height: 1;
+            margin-bottom: 15px;
+            color: var(--cor-ewe-verde); 
+            animation: pulse-glow 2s infinite ease-in-out; 
+        }
+
+        .coroa-icon i.fa-pagelines {
+            color: var(--cor-ewe-verde); 
+        }
+
+        @keyframes pulse-glow {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.95; transform: scale(1.02); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        h1 {
+            font-family: var(--font-titulo);
+            font-size: 3rem;
+            margin: 0 0 10px 0;
+            color: var(--cor-texto-principal);
+            line-height: 1;
+            font-weight: 600;
+        }
+        
+        h2 {
+            font-family: var(--font-texto);
+            font-size: 1.25rem;
+            color: var(--cor-destaque-ori); 
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: var(--cor-texto-principal);
+        }
+        
+        b {
+            font-weight: 700;
+        }
+
+        .cta-contato {
+            margin-top: 30px;
+            padding: 10px;
+            border-top: 1px solid rgba(183, 137, 114, 0.4); 
+        }
+
+        /* ESTILO PARA A ISCA VISUAL 'AGENDAMENTOS' */
+        .iscas-visuais {
+            color: var(--cor-ewe-verde);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .cta-contato p {
+            font-size: 0.95rem; 
+            margin-bottom: 10px; 
+            color: var(--cor-texto-principal); 
+            font-weight: 400;
+        }
+        
+        .cta-contato a {
+            font-weight: 500;
+            color: var(--cor-destaque-ori);
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .cta-contato a:hover {
+            color: var(--cor-acento-secundario);
+        }
+
+        .dev-info {
+            font-size: 0.85rem;
+            color: var(--cor-texto-principal);
+            margin-top: 30px;
+            opacity: 0.7;
+        }
+        .dev-info a {
+            color: var(--cor-texto-principal);
+            font-weight: 500;
+        }
+        .dev-info a:hover {
+            color: var(--cor-destaque-ori);
+        }
+        
+        /* ÊNFASE NO AXÉ */
+        .axe-final {
+            font-family: var(--font-titulo);
+            font-size: 1.3rem;
+            color: var(--cor-destaque-ori);
+            font-weight: 600;
+            margin-top: 15px;
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <div class="coroa-icon">
+            <i class="fa-brands fa-pagelines"></i> 
+        </div> 
+
+        <h1>Afrotunde</h1>
+        <h2>O Seu Santuário Digital de Beleza Ancestral</h2>
+        
+        <p>
+            <b>Chegou a hora de coroar o Ori!</b> Estamos dando os últimos toques <b>premium</b> na nossa página, para que a sua experiência seja tão divina quanto um <b>dreadlock</b>, uma <b>trança</b> ou um <b>penteado</b> bem feito.
+        </p>
+        
+        <p>
+            É o <b>Black Pride</b> na veia, com toda a paz, leveza e harmonia que o seu cabelo merece. Fiquem ligados que o site está vindo.
+            <span class="axe-final">Axé!</span>
+        </p>
+        
+        <div class="cta-contato">
+            <p>
+                Para <span class="iscas-visuais">agendamentos</span> urgentes e spoilers:
+            </p>
+            <a href="https://www.instagram.com/afrotunde/" target="_blank" rel="noopener noreferrer">@afrotunde no Insta</a>
+        </div>
+        
+        <p class="dev-info">
+            Um projeto premium, criado por: 
+            <a href="https://www.instagram.com/pablit0rg/" target="_blank" rel="noopener noreferrer">@pablit0rg</a>
+        </p>
+    </div>
+</body>
+</html>
