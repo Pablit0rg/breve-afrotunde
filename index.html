@@ -14,36 +14,28 @@
     <style>
         /* VARIÁVEIS DO TEMA LIGHT (TERROSA) */
         :root {
-            --cor-fundo-base: #fcfaf5; /* Bege/Areia (Off-white) */
-            --cor-texto-principal: #3f3a34; /* Marrom-Escuro */
-            --cor-destaque-ori: #b78972; /* Terracota (Nosso Ouro) */
-            --cor-acento-secundario: #f0b8aa; /* Rosa Salmão */
-            --cor-ewe-verde: #4a5c4a; /* Verde Oliva Sutil (Isca Visual) */
-            --cor-instagram: #E1306C; /* Cor oficial do Instagram */
+            --cor-fundo-base: #fcfaf5;
+            --cor-texto-principal: #3f3a34;
+            --cor-destaque-ori: #b78972;
+            --cor-acento-secundario: #f0b8aa;
+            --cor-ewe-verde: #4a5c4a;
+            --cor-instagram: #E1306C;
             --font-titulo: 'Cormorant Garamond', serif;
             --font-texto: 'Inter', sans-serif;
         }
 
-        /* ----------------------------------------------------- */
-        /* AQUI ESTÁ A CORREÇÃO DE SCROLL E RESPONSIVIDADE */
-        /* ----------------------------------------------------- */
         body {
             font-family: var(--font-texto);
             margin: 0;
             padding: 0;
-            /* REMOVENDO FLEX PARA EVITAR TRAVAMENTO NO MOBILE E RESTAURANDO FLUIDEZ */
-            /* display: flex; */
-            /* justify-content: center; */
-            /* align-items: center; */
             min-height: 100vh;
             background-color: var(--cor-fundo-base);
             color: var(--cor-texto-principal);
             text-align: center;
-            /* REMOVENDO OVERFLOW HIDDEN (evita travamento) E SCROLL FORÇADO */
-            overflow-x: hidden; 
+            overflow-x: hidden;
             transition: background-color 0.3s ease;
             
-            /* Ajuste de Padding no Mobile para centralizar visualmente */
+            /* Ajuste de Padding Vertical para centralizar visualmente (PC) */
             padding-top: 5vh; 
             padding-bottom: 5vh;
         }
@@ -57,10 +49,9 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
             border-top: 5px solid var(--cor-destaque-ori); 
             
-            /* CENTRALIZAÇÃO COM MARGIN (MAIS SEGURO QUE FLEX NO BODY) */
+            /* CENTRALIZAÇÃO COM MARGIN */
             margin: 0 auto;
         }
-        /* ----------------------------------------------------- */
 
         .coroa-icon {
             font-size: 3.5rem;
@@ -179,14 +170,24 @@
             margin-top: 5px;
         }
         
-        /* MEDIA QUERY PARA AJUSTE DE FONT NO MOBILE */
-        @media (max-width: 480px) {
+        /* MEDIA QUERY PARA RESPONSIVIDADE E RESPIRO MOBILE */
+        @media (max-width: 768px) {
+            
+            /* MEDIA QUERY PARA DAR RESPIRO NAS LATERAIS (SOLUÇÃO DO GRUDADO) */
+            body {
+                /* Adiciona padding horizontal para evitar que o container grude nas bordas */
+                padding-left: 20px; 
+                padding-right: 20px;
+            }
+            
+            /* Ajuste de Tamanho de Fonte */
             h1 {
                 font-size: 2.5rem; 
             }
             p {
                 font-size: 1rem;
             }
+            /* Ajuste o padding interno do container */
             .container {
                 padding: 40px 20px;
             }
