@@ -35,7 +35,6 @@
             overflow-x: hidden;
             transition: background-color 0.3s ease;
             
-            /* Ajuste de Padding Vertical para centralizar visualmente (PC) */
             padding-top: 5vh; 
             padding-bottom: 5vh;
         }
@@ -49,7 +48,6 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
             border-top: 5px solid var(--cor-destaque-ori); 
             
-            /* CENTRALIZAÇÃO COM MARGIN */
             margin: 0 auto;
         }
 
@@ -89,10 +87,14 @@
         }
 
         p {
-            font-size: 1.1rem;
+            /* ALTERAÇÃO: RESTAURANDO O TAMANHO ANTERIOR */
+            font-size: 1.1rem; 
             line-height: 1.6;
             margin-bottom: 20px;
             color: var(--cor-texto-principal);
+            
+            /* MANTENDO O JUSTIFICADO */
+            text-align: justify;
         }
         
         b {
@@ -103,6 +105,7 @@
             margin-top: 30px;
             padding: 10px;
             border-top: 1px solid rgba(183, 137, 114, 0.4); 
+            text-align: center;
         }
 
         /* ESTILO PARA A ISCA VISUAL 'AGENDAMENTOS' */
@@ -113,10 +116,11 @@
         }
 
         .cta-contato p {
-            font-size: 0.95rem; 
+            font-size: 1.1rem; /* Tamanho da frase CTA ajustado */
             margin-bottom: 10px; 
             color: var(--cor-texto-principal); 
             font-weight: 400;
+            text-align: center;
         }
         
         .cta-contato a {
@@ -144,6 +148,7 @@
             color: var(--cor-texto-principal);
             margin-top: 30px;
             opacity: 0.7;
+            text-align: center;
         }
         .dev-info a {
             color: var(--cor-texto-principal);
@@ -161,6 +166,7 @@
             font-weight: 600;
             margin-top: 15px;
             display: block;
+            text-align: center;
         }
         
         /* NOVO ESTILO: HASHTAG DE EMPODERAMENTO */
@@ -173,9 +179,8 @@
         /* MEDIA QUERY PARA RESPONSIVIDADE E RESPIRO MOBILE */
         @media (max-width: 768px) {
             
-            /* MEDIA QUERY PARA DAR RESPIRO NAS LATERAIS (SOLUÇÃO DO GRUDADO) */
+            /* MEDIA QUERY PARA DAR RESPIRO NAS LATERAIS */
             body {
-                /* Adiciona padding horizontal para evitar que o container grude nas bordas */
                 padding-left: 20px; 
                 padding-right: 20px;
             }
@@ -184,10 +189,11 @@
             h1 {
                 font-size: 2.5rem; 
             }
+            /* RESTAURANDO TAMANHO DA FONTE PARA MOBILE */
             p {
-                font-size: 1rem;
+                font-size: 1.1rem;
+                text-align: justify;
             }
-            /* Ajuste o padding interno do container */
             .container {
                 padding: 40px 20px;
             }
