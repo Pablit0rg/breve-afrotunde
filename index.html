@@ -19,25 +19,35 @@
             --cor-destaque-ori: #b78972; /* Terracota (Nosso Ouro) */
             --cor-acento-secundario: #f0b8aa; /* Rosa Salmão */
             --cor-ewe-verde: #4a5c4a; /* Verde Oliva Sutil (Isca Visual) */
+            --cor-instagram: #E1306C; /* Cor oficial do Instagram */
             --font-titulo: 'Cormorant Garamond', serif;
             --font-texto: 'Inter', sans-serif;
         }
 
+        /* ----------------------------------------------------- */
+        /* AQUI ESTÁ A CORREÇÃO DE SCROLL E RESPONSIVIDADE */
+        /* ----------------------------------------------------- */
         body {
             font-family: var(--font-texto);
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            /* REMOVENDO FLEX PARA EVITAR TRAVAMENTO NO MOBILE E RESTAURANDO FLUIDEZ */
+            /* display: flex; */
+            /* justify-content: center; */
+            /* align-items: center; */
             min-height: 100vh;
             background-color: var(--cor-fundo-base);
             color: var(--cor-texto-principal);
             text-align: center;
-            overflow: hidden;
+            /* REMOVENDO OVERFLOW HIDDEN (evita travamento) E SCROLL FORÇADO */
+            overflow-x: hidden; 
             transition: background-color 0.3s ease;
+            
+            /* Ajuste de Padding no Mobile para centralizar visualmente */
+            padding-top: 5vh; 
+            padding-bottom: 5vh;
         }
-
+        
         .container {
             background-color: #ffffff;
             padding: 50px 40px;
@@ -46,7 +56,11 @@
             width: 90%;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
             border-top: 5px solid var(--cor-destaque-ori); 
+            
+            /* CENTRALIZAÇÃO COM MARGIN (MAIS SEGURO QUE FLEX NO BODY) */
+            margin: 0 auto;
         }
+        /* ----------------------------------------------------- */
 
         .coroa-icon {
             font-size: 3.5rem;
@@ -120,10 +134,18 @@
             text-decoration: none;
             margin: 0 10px;
             transition: color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
         }
 
         .cta-contato a:hover {
             color: var(--cor-acento-secundario);
+        }
+        
+        .cta-contato a .fa-instagram {
+            color: var(--cor-instagram);
+            font-size: 1.1em;
         }
 
         .dev-info {
@@ -149,6 +171,27 @@
             margin-top: 15px;
             display: block;
         }
+        
+        /* NOVO ESTILO: HASHTAG DE EMPODERAMENTO */
+        .hashtag-info {
+            font-size: 0.9em;
+            color: var(--cor-ewe-verde);
+            margin-top: 5px;
+        }
+        
+        /* MEDIA QUERY PARA AJUSTE DE FONT NO MOBILE */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.5rem; 
+            }
+            p {
+                font-size: 1rem;
+            }
+            .container {
+                padding: 40px 20px;
+            }
+        }
+
 
     </style>
 </head>
@@ -173,12 +216,15 @@
         
         <div class="cta-contato">
             <p>
-                Para <span class="iscas-visuais">agendamentos</span> urgentes e spoilers:
+                Para <span class="iscas-visuais">agendamentos</span> e <span class="iscas-visuais">vagas exclusivas</span>:
             </p>
-            <a href="https://www.instagram.com/afrotunde/" target="_blank" rel="noopener noreferrer">@afrotunde no Insta</a>
+            <a href="https://www.instagram.com/afrotunde/" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-instagram"></i> @afrotunde no Insta
+            </a>
         </div>
         
         <p class="dev-info">
+            <span class="hashtag-info">#SeuCabeloÉCoroa | #BlackExcellence</span>
             Um projeto premium, criado por: 
             <a href="https://www.instagram.com/pablit0rg/" target="_blank" rel="noopener noreferrer">@pablit0rg</a>
         </p>
