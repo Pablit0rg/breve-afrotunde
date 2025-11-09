@@ -7,7 +7,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
@@ -21,7 +21,7 @@
             --cor-ewe-verde: #4a5c4a;
             --cor-instagram: #E1306C;
             --font-titulo: 'Cormorant Garamond', serif;
-            --font-texto: 'Inter', sans-serif;
+            --font-texto: 'Source Serif 4', serif; 
         }
 
         body {
@@ -29,27 +29,117 @@
             margin: 0;
             padding: 0;
             min-height: 100vh;
-            background-color: var(--cor-fundo-base);
+            /* [GLASSCARD] Fundo degradê para realçar o efeito de vidro */
+            background: linear-gradient(135deg, var(--cor-fundo-base) 0%, #f7e9d7 100%); 
             color: var(--cor-texto-principal);
             text-align: center;
             overflow-x: hidden;
             transition: background-color 0.3s ease;
             
+            /* [TILT] Perspective é movida para o body (cenário 3D) */
+            perspective: 1000px; 
+            
+            /* Ajuste de padding para centralização vertical */
             padding-top: 5vh; 
             padding-bottom: 5vh;
+            display: flex; /* Para centralizar o container verticalmente */
+            align-items: center; /* Para centralizar o container verticalmente */
+            justify-content: center; /* Para centralizar o container horizontalmente */
         }
         
-        .container {
-            background-color: #ffffff;
-            padding: 50px 40px;
-            border-radius: 12px;
+        /* [FLIP] 1. O WRAPPER EXTERNO (CHASSI DO TILT) */
+        /* Este wrapper cuida do balanço (Tilt) e do tamanho do card */
+        .tilt-wrapper {
             max-width: 500px;
             width: 90%;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            border-top: 5px solid var(--cor-destaque-ori); 
+            margin: 0 auto; /* Centraliza o card */
             
-            margin: 0 auto;
+            /* [TILT] Transição e estilo 3D para o balanço */
+            transition: transform 0.4s ease-out;
+            transform-style: preserve-3d;
         }
+
+        /* [FLIP] 2. O MIOLO QUE GIRA (FLIP) */
+        /* Este container cuida do giro (Flip) de 180 graus */
+        .container-flipper {
+            position: relative;
+            width: 100%;
+            /* A altura será definida pelo conteúdo do .card-front */
+            
+            /* [FLIP] Transição e estilo 3D para o giro */
+            transition: transform 0.8s cubic-bezier(.17,.84,.44,1);
+            transform-style: preserve-3d;
+            cursor: pointer; /* Indica que é clicável */
+        }
+        
+        /* [FLIP] Classe que o JS adiciona para girar */
+        .container-flipper.is-flipped {
+            transform: rotateY(180deg);
+        }
+
+        /* [FLIP] 3. AS FACES (FRENTE E VERSO) */
+        /* Base comum para as duas faces (onde fica o glassmorphism) */
+        .card-face {
+            /* [GLASSCARD] Efeito de vidro */
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+            
+            padding: 50px 40px;
+            border-radius: 12px;
+            
+            /* [FLIP] Propriedade MÁGICA para o efeito de virar */
+            backface-visibility: hidden;
+            
+            /* Garante que o padding não estoure o tamanho */
+            box-sizing: border-box; 
+            
+            transition: box-shadow 0.4s ease-out, background-color 0.3s ease;
+        }
+        
+        .tilt-wrapper:hover .card-face {
+             box-shadow: 0 12px 48px 0 rgba(0, 0, 0, 0.15);
+             background-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        /* [FLIP] A FACE DA FRENTE */
+        .card-front {
+            position: relative; /* Define a altura do conjunto */
+            z-index: 2;
+        }
+
+        /* [FLIP] A FACE DE TRÁS */
+        .card-back {
+            position: absolute; /* Ocupa o espaço do .card-front */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            
+            /* [FLIP] Já começa virada para trás */
+            transform: rotateY(180deg); 
+            
+            /* Estilos para centralizar o conteúdo do verso */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* [FLIP] Estilo de exemplo para o conteúdo do verso */
+        .card-back h2 {
+            font-family: var(--font-titulo);
+            font-size: 2rem;
+            color: var(--cor-texto-principal);
+            margin: 0 0 15px 0;
+        }
+        .card-back p {
+            font-size: 1.1rem;
+            text-align: center;
+        }
+        /* [FLIP] Fim das mudanças estruturais do CSS */
+
 
         .coroa-icon {
             font-size: 3.5rem;
@@ -87,13 +177,10 @@
         }
 
         p {
-            /* ALTERAÇÃO: RESTAURANDO O TAMANHO ANTERIOR */
             font-size: 1.1rem; 
             line-height: 1.6;
             margin-bottom: 20px;
             color: var(--cor-texto-principal);
-            
-            /* MANTENDO O JUSTIFICADO */
             text-align: justify;
         }
         
@@ -108,7 +195,6 @@
             text-align: center;
         }
 
-        /* ESTILO PARA A ISCA VISUAL 'AGENDAMENTOS' */
         .iscas-visuais {
             color: var(--cor-ewe-verde);
             font-weight: 600;
@@ -116,7 +202,7 @@
         }
 
         .cta-contato p {
-            font-size: 1.1rem; /* Tamanho da frase CTA ajustado */
+            font-size: 1.1rem;
             margin-bottom: 10px; 
             color: var(--cor-texto-principal); 
             font-weight: 400;
@@ -158,7 +244,6 @@
             color: var(--cor-destaque-ori);
         }
         
-        /* ÊNFASE NO AXÉ */
         .axe-final {
             font-family: var(--font-titulo);
             font-size: 1.3rem;
@@ -169,72 +254,152 @@
             text-align: center;
         }
         
-        /* NOVO ESTILO: HASHTAG DE EMPODERAMENTO */
         .hashtag-info {
             font-size: 0.9em;
             color: var(--cor-ewe-verde);
             margin-top: 5px;
         }
         
-        /* MEDIA QUERY PARA RESPONSIVIDADE E RESPIRO MOBILE */
         @media (max-width: 768px) {
             
-            /* MEDIA QUERY PARA DAR RESPIRO NAS LATERAIS */
             body {
                 padding-left: 20px; 
                 padding-right: 20px;
             }
             
-            /* Ajuste de Tamanho de Fonte */
             h1 {
                 font-size: 2.5rem; 
             }
-            /* RESTAURANDO TAMANHO DA FONTE PARA MOBILE */
             p {
                 font-size: 1.1rem;
                 text-align: justify;
             }
-            .container {
+            
+            /* [FLIP] Ajuste de padding mobile */
+            .card-face {
                 padding: 40px 20px;
             }
         }
-
-
     </style>
 </head>
 <body>
-    <div class="container">
-        
-        <div class="coroa-icon">
-            <i class="fa-brands fa-pagelines"></i> 
-        </div> 
 
-        <h1>Afrotunde</h1>
-        <h2>O Seu Santuário Digital de Beleza Ancestral</h2>
+    <div class="tilt-wrapper" id="tilt-wrapper">
         
-        <p>
-            <b>Chegou a hora de coroar o Ori!</b> Estamos dando os últimos toques <b>premium</b> na nossa página, para que a sua experiência seja tão divina quanto um <b>dreadlock</b>, uma <b>trança</b> ou um <b>penteado</b> bem feito.
-        </p>
-        
-        <p>
-            É o <b>Black Pride</b> na veia, com toda a paz, leveza e harmonia que o seu cabelo merece. Fiquem ligados que o site está vindo.
-            <span class="axe-final">Axé!</span>
-        </p>
-        
-        <div class="cta-contato">
-            <p>
-                Para <span class="iscas-visuais">agendamentos</span> e <span class="iscas-visuais">vagas exclusivas</span>:
-            </p>
-            <a href="https://www.instagram.com/afrotunde/" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-instagram"></i> @afrotunde no Insta
-            </a>
+        <div class="container-flipper" id="flip-container">
+            
+            <div class="card-face card-front">
+                
+                <div class="coroa-icon">
+                    <i class="fa-brands fa-pagelines"></i> 
+                </div> 
+
+                <h1>Afrotunde</h1>
+                <h2>O Seu Santuário Digital de Beleza Ancestral</h2>
+                
+                <p>
+                    <b>Chegou a hora de coroar o Ori!</b> Estamos finalizando cada detalhe <b>premium</b> da nossa página pra que sua experiência seja tão divina quanto um <b>dreadlock</b>, uma <b>trança nagô</b> ou um <b>penteado style</b> bem feito.
+                    <br><br>
+                    Aqui é sobre celebrar quem somos — pretos, potentes e cheios de <b>Axé</b>. O brilho do nosso cabelo e a força da nossa coroa são símbolos do nosso poder e da nossa ancestralidade em movimento.
+                </p>
+                
+                <p>
+                    O Santuário Digital nasce com amor, tecnologia e propósito: crescer juntos, fortalecer a cada talento preto que faz a revolução acontecer — com arte, código e coração.
+                    <span class="axe-final">Axé!</span>
+                </p>
+                
+                <div class="cta-contato">
+                    <p>para <span class="iscas-visuais">agendamentos</span>:</p>
+                    <a href="https://www.instagram.com/afrotunde/" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-instagram"></i> @afrotunde
+                    </a>
+                </div>
+                
+                <p class="dev-info">
+                    <span class="hashtag-info">#BlackGirlMagic | #CrespoÉLindo</span>
+                    Um projeto premium, criado por: 
+                    <a href="https://www.instagram.com/pablit0rg/" target="_blank" rel="noopener noreferrer">@pablit0rg</a>
+                </p>
+                </div>
+            
+            <div class="card-face card-back">
+                
+                <h2>Conecte-se</h2>
+                <p>
+                    O futuro é ancestral e digital.
+                    <br>
+                    Em breve, o santuário completo.
+                </p>
+                <div class="coroa-icon">
+                    <i class="fa-brands fa-pagelines"></i> 
+                </div> 
+                <p class="dev-info">
+                    (Toque para voltar)
+                </p>
+                </div>
         </div>
-        
-        <p class="dev-info">
-            <span class="hashtag-info">#SeuCabeloÉCoroa | #BlackExcellence</span>
-            Um projeto premium, criado por: 
-            <a href="https://www.instagram.com/pablit0rg/" target="_blank" rel="noopener noreferrer">@pablit0rg</a>
-        </p>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // [TILT] 1. LÓGICA DO TILT (GIROSCÓPIO / MOUSE)
+            // [TILT] O script agora mira no wrapper externo
+            const tiltWrapper = document.getElementById('tilt-wrapper'); 
+            if (tiltWrapper) {
+                const maxTilt = 5; 
+                const transitionDuration = '0.4s';
+
+                const applyTilt = (rotateX, rotateY) => {
+                    tiltWrapper.style.transition = 'transform ' + transitionDuration + ' ease-out';
+                    tiltWrapper.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                };
+
+                const resetTilt = () => {
+                    tiltWrapper.style.transition = 'transform 0.6s cubic-bezier(.17,.84,.44,1)';
+                    tiltWrapper.style.transform = 'rotateX(0deg) rotateY(0deg)';
+                };
+
+                const isMobile = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+
+                if (window.DeviceOrientationEvent && isMobile) {
+                    window.addEventListener('deviceorientation', (event) => {
+                        let tiltX = event.beta; 
+                        let tiltY = event.gamma;
+                        
+                        tiltX = Math.min(Math.max(tiltX, -45), 45);
+                        tiltY = Math.min(Math.max(tiltY, -45), 45);
+                        
+                        let rotateX = (tiltX / 45) * -maxTilt;
+                        let rotateY = (tiltY / 45) * maxTilt; 
+                        
+                        applyTilt(rotateX, rotateY);
+                    });
+                } else { 
+                    tiltWrapper.addEventListener('mousemove', (e) => {
+                        const rect = tiltWrapper.getBoundingClientRect();
+                        const x = (e.clientX - rect.left) / rect.width - 0.5;
+                        const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+                        const rotateX = y * (-maxTilt * 2); 
+                        const rotateY = x * (maxTilt * 2); 
+                        
+                        applyTilt(rotateX, rotateY);
+                    });
+                    tiltWrapper.addEventListener('mouseleave', resetTilt);
+                }
+            }
+            
+            // [FLIP] 2. LÓGICA DO FLIP (CLIQUE)
+            // [FLIP] O script mira no container interno
+            const flipContainer = document.getElementById('flip-container');
+            if (flipContainer) {
+                flipContainer.addEventListener('click', () => {
+                    flipContainer.classList.toggle('is-flipped');
+                });
+            }
+            
+        });
+    </script>
 </body>
 </html>
