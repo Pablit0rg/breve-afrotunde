@@ -96,10 +96,16 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: space-around; /* Distribuir espaço */
+            justify-content: space-around; /* Distribuir os 3 blocos */
             background-color: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* [MUDANÇA] Novo container para agrupar o texto do topo */
+        .card-back-header {
+            /* Este container vai segurar o H2 e o P */
+            text-align: center;
         }
 
         .card-back h2 {
@@ -107,18 +113,16 @@
             font-size: 2rem;
             color: var(--cor-ewe-verde);
             margin: 0; 
-            min-height: 1.5em; 
-            position: relative; /* Posição para a linha */
-            padding-bottom: 15px; /* Espaço para a linha */
+            position: relative; 
+            padding-bottom: 15px; 
         }
-
-        /* [NOVA REGRA] A linha verde debaixo do "Conecte-se" */
+        
         .card-back h2::after {
             content: '';
             position: absolute;
-            bottom: 0; /* No fundo do padding do h2 */
+            bottom: 0; 
             left: 50%;
-            transform: translateX(-50%); /* Centraliza */
+            transform: translateX(-50%); 
             width: 60px;
             height: 3px;
             background-color: var(--cor-ewe-verde);
@@ -129,7 +133,7 @@
             text-align: center;
             color: var(--cor-destaque-ori);
             margin: 0; 
-            min-height: 2em;
+            margin-top: 15px; /* Adiciona espaço entre o h2 e o p dentro do header */
         }
 
         .destaque-digital {
@@ -142,8 +146,7 @@
             font-weight: bold;
             opacity: 1;
             line-height: 1.4; 
-            margin: 0; 
-            min-height: 1.5em;
+            margin: 0; /* Removido margem e min-height */
         }
 
         .coroa-icon {
@@ -159,7 +162,7 @@
         }
 
         .card-back-image {
-            max-width: 250px;
+            max-width: 280px; /* [MUDANÇA] Aumentado de 250px para 280px */
             width: 100%;
             height: auto;
             margin: 0;
@@ -349,6 +352,24 @@
                 font-size: 0.8rem;
                 margin-top: 20px;
             }
+
+            /* [MUDANÇA] Ajustes de mobile para o card-back */
+            .card-back h2 {
+                font-size: 1.8rem; /* Um pouco menor no mobile */
+                padding-bottom: 10px;
+            }
+            .card-back h2::after {
+                height: 2px; /* Linha mais fina */
+                width: 50px;
+            }
+            .card-back p {
+                font-size: 1rem; /* Um pouco menor */
+                margin-top: 10px;
+            }
+            .card-back-image {
+                max-width: 200px; /* Imagem menor no mobile para caber */
+            }
+
         }
 
         @media (max-width: 380px) {
@@ -368,6 +389,9 @@
                 font-size: 0.95rem;
                 flex-direction: column;
                 gap: 5px;
+            }
+            .card-back-image {
+                max-width: 180px; /* Ainda menor para telas minúsculas */
             }
         }
     </style>
@@ -419,12 +443,14 @@
             
             <div class="card-face card-back">
                 
-                <h2>Conecte-se</h2>
-                <p>
-                    O futuro é ancestral e <span class="destaque-digital">digital</span>.
-                    <br>
-                    Em breve, o santuário completo.
-                </p>
+                <div class="card-back-header">
+                    <h2>Conecte-se</h2>
+                    <p>
+                        O futuro é ancestral e <span class="destaque-digital">digital</span>.
+                        <br>
+                        Em breve, o santuário completo.
+                    </p>
+                </div>
                 
                 <img src="https://raw.githubusercontent.com/Pablit0rg/breve-afrotunde/main/capa.png" alt="Ilustração Afrotunde" class="card-back-image">
                 
@@ -461,7 +487,6 @@
                     let tiltX = event.beta;  // Inclinação frente/trás
                     let tiltY = event.gamma; // Inclinação esquerda/direita
                     
-                    // Limita os valores para evitar rotações extremas
                     tiltX = Math.min(Math.max(tiltX, -45), 45);
                     tiltY = Math.min(Math.max(tiltY, -45), 45);
                     
@@ -475,7 +500,6 @@
 
                 if (window.DeviceOrientationEvent && isMobile) {
                     
-                    // Verifica se o navegador precisa de permissão (ex: iOS 13+)
                     if (typeof DeviceOrientationEvent.requestPermission === 'function') {
                         
                         const requestPermission = () => {
@@ -487,11 +511,9 @@
                                 })
                                 .catch(console.error);
                         };
-                        // Pede permissão no PRIMEIRO clique no card
                         flipContainer.addEventListener('click', requestPermission, { once: true });
 
                     } else {
-                        // Navegadores que não precisam de permissão (ex: Android)
                         window.addEventListener('deviceorientation', handleOrientation);
                     }
                     
