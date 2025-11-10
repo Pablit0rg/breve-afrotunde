@@ -101,7 +101,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: space-around; /* Distribuir espaço igualmente */
             background-color: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.3);
@@ -111,12 +111,15 @@
             font-family: var(--font-titulo);
             font-size: 2rem;
             color: var(--cor-ewe-verde);
-            margin: 0 0 15px 0;
+            margin: 0; /* Removido margem fixa */
+            min-height: 1.5em; /* Garante um pouco de espaço vertical */
         }
         .card-back p {
             font-size: 1.1rem;
             text-align: center;
             color: var(--cor-destaque-ori);
+            margin: 0; /* Removido margem fixa */
+            min-height: 2em; /* Garante um pouco de espaço vertical */
         }
 
         .destaque-digital {
@@ -129,7 +132,8 @@
             font-weight: bold;
             opacity: 1;
             line-height: 1.4; 
-            margin-top: 30px;
+            margin: 0; /* Removido margem fixa */
+            min-height: 1.5em; /* Garante um pouco de espaço vertical */
         }
 
         .coroa-icon {
@@ -148,7 +152,8 @@
             max-width: 250px;
             width: 100%;
             height: auto;
-            margin-bottom: 15px;
+            margin: 0; /* Removido margem fixa */
+            display: block; /* Garante que a imagem se comporte bem com flexbox */
         }
 
         @keyframes pulse-glow {
