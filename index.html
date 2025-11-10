@@ -1,440 +1,455 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Afrotunde | Santuário Digital Em Construção</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <style>
-        /* VARIÁVEIS DO TEMA LIGHT (TERROSA) */
-        :root {
-            --cor-fundo-base: #fcfaf5;
-            --cor-texto-principal: #3f3a34;
-            --cor-texto-secundario: #6b6259;
-            --cor-destaque-ori: #b78972;
-            --cor-acento-secundario: #f0b8aa;
-            --cor-ewe-verde: #4a5c4a;
-            --cor-instagram: #E1306C;
-            --font-titulo: 'Cormorant Garamond', serif;
-            --font-texto: 'Source Serif 4', serif; 
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afrotunde | Santuário Digital Em Construção</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --cor-fundo-base: #fcfaf5;
+            --cor-texto-principal: #3f3a34;
+            --cor-texto-secundario: #6b6259;
+            --cor-destaque-ori: #b78972;
+            --cor-acento-secundario: #f0b8aa;
+            --cor-ewe-verde: #4a5c4a;
+            --cor-instagram: #E1306C;
+            --font-titulo: 'Cormorant Garamond', serif;
+            --font-texto: 'Source Serif 4', serif; 
+        }
 
-        body {
-            font-family: var(--font-texto);
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            background: linear-gradient(135deg, var(--cor-fundo-base) 0%, #f7e9d7 100%); 
-            color: var(--cor-texto-principal);
-            text-align: center;
-            overflow-x: hidden;
-            transition: background-color 0.3s ease;
-            perspective: 1000px; 
-            padding-top: 5vh; 
-            padding-bottom: 5vh;
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-        }
-        
-        /* [FLIP] 1. O WRAPPER EXTERNO (CHASSI DO TILT) */
-        .tilt-wrapper {
-            max-width: 500px;
-            width: 90%;
-            margin: 0 auto; 
-            transition: transform 0.4s ease-out;
-            transform-style: preserve-3d;
-        }
+        body {
+            font-family: var(--font-texto);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--cor-fundo-base) 0%, #f7e9d7 100%); 
+            color: var(--cor-texto-principal);
+            text-align: center;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease;
+            perspective: 1000px; 
+            padding-top: 5vh; 
+            padding-bottom: 5vh;
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            box-sizing: border-box; /* Adicionado para melhor cálculo em mobile */
+        }
+        
+        /* [FLIP] 1. O WRAPPER EXTERNO (CHASSI DO TILT) */
+        .tilt-wrapper {
+            max-width: 500px;
+            width: 90%;
+            margin: 0 auto; 
+            transition: transform 0.4s ease-out;
+            transform-style: preserve-3d;
+        }
 
-        /* [FLIP] 2. O MIOLO QUE GIRA (FLIP) */
-        .container-flipper {
-            position: relative;
-            width: 100%;
-            transition: transform 0.8s cubic-bezier(.17,.84,.44,1);
-            transform-style: preserve-3d;
-            cursor: pointer; 
-        }
-        
-        .container-flipper.is-flipped {
-            transform: rotateY(180deg);
-        }
+        /* [FLIP] 2. O MIOLO QUE GIRA (FLIP) */
+        .container-flipper {
+            position: relative;
+            width: 100%;
+            transition: transform 0.8s cubic-bezier(.17,.84,.44,1);
+            transform-style: preserve-3d;
+            cursor: pointer; 
+        }
+        
+        .container-flipper.is-flipped {
+            transform: rotateY(180deg);
+        }
 
-        /* [FLIP] 3. AS FACES (FRENTE E VERSO) */
-        .card-face {
-            background-color: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
-            padding: 50px 40px;
-            border-radius: 12px;
-            backface-visibility: hidden;
-            box-sizing: border-box; 
-            transition: box-shadow 0.4s ease-out, background-color 0.3s ease;
-        }
-        
-        .tilt-wrapper:hover .card-face {
-             box-shadow: 0 12px 48px 0 rgba(0, 0, 0, 0.15);
-             background-color: rgba(255, 255, 255, 0.3);
-        }
-        
-        /* [FLIP] A FACE DA FRENTE */
-        .card-front {
-            position: relative; 
-            z-index: 2;
-        }
+        /* [FLIP] 3. AS FACES (FRENTE E VERSO) */
+        .card-face {
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+            padding: 50px 40px;
+            border-radius: 12px;
+            backface-visibility: hidden;
+            box-sizing: border-box; 
+            transition: box-shadow 0.4s ease-out, background-color 0.3s ease;
+            width: 100%; /* Garantia de largura */
+        }
+        
+        .tilt-wrapper:hover .card-face {
+            box-shadow: 0 12px 48px 0 rgba(0, 0, 0, 0.15);
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        /* [FLIP] A FACE DA FRENTE */
+        .card-front {
+            position: relative; 
+            z-index: 2;
+        }
 
-        /* [FLIP] A FACE DE TRÁS - RESTAURADO PARA GLASSMORPHISM ORIGINAL */
-        .card-back {
-            position: absolute; 
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            transform: rotateY(180deg); 
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            /* RESTAURADO: Glassmorphism original igual ao card-front */
-            background-color: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
+        /* [FLIP] A FACE DE TRÁS */
+        .card-back {
+            position: absolute; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: rotateY(180deg); 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
 
-        .card-back h2 {
-            font-family: var(--font-titulo);
-            font-size: 2rem;
-            color: var(--cor-ewe-verde);
-            margin: 0 0 15px 0;
-        }
-        .card-back p {
-            font-size: 1.1rem;
-            text-align: center;
-            color: var(--cor-destaque-ori);
-        }
+        .card-back h2 {
+            font-family: var(--font-titulo);
+            font-size: 2rem;
+            color: var(--cor-ewe-verde);
+            margin: 0 0 15px 0;
+        }
+        .card-back p {
+            font-size: 1.1rem;
+            text-align: center;
+            color: var(--cor-destaque-ori);
+        }
 
-        /* CLASSE PARA O TEXTO "DIGITAL" EM VERDE */
-        .destaque-digital {
-            color: var(--cor-ewe-verde);
-            font-weight: 600;
-        }
+        .destaque-digital {
+            color: var(--cor-ewe-verde);
+            font-weight: 600;
+        }
 
-        /* ESTILO ESPECÍFICO PARA O "(CLIQUE PARA A MENSAGEM)" NO CARD-BACK */
-        .card-back .dev-info {
-            color: var(--cor-texto-principal);
-            font-weight: bold;
-            opacity: 1;
-            /* [CORREÇÃO DE ALINHAMENTO] Resetando estilos do dev-info da frente */
-            line-height: 1.4; 
-            margin-top: 30px;
-        }
+        .card-back .dev-info {
+            color: var(--cor-texto-principal);
+            font-weight: bold;
+            opacity: 1;
+            line-height: 1.4; 
+            margin-top: 30px;
+        }
 
-        .coroa-icon {
-            font-size: 3.5rem;
-            line-height: 1;
-            margin-bottom: 15px;
-            color: var(--cor-ewe-verde); 
-            animation: pulse-glow 2s infinite ease-in-out; 
-        }
+        .coroa-icon {
+            font-size: 3.5rem;
+            line-height: 1;
+            margin-bottom: 15px;
+            color: var(--cor-ewe-verde); 
+            animation: pulse-glow 2s infinite ease-in-out; 
+        }
 
-        .coroa-icon i.fa-pagelines {
-            color: var(--cor-ewe-verde); 
-        }
+        .coroa-icon i.fa-pagelines {
+            color: var(--cor-ewe-verde); 
+        }
 
-        /* CSS PARA A IMAGEM NO VERSO */
-        .card-back-image {
-            max-width: 250px;
-            width: 100%;
-            height: auto;
-            margin-bottom: 15px;
-        }
+        .card-back-image {
+            max-width: 250px;
+            width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+        }
 
-        @keyframes pulse-glow {
-  _         0% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.95; transform: scale(1.02); }
-            100% { opacity: 1; transform: scale(1); }
-        }
+        @keyframes pulse-glow {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.95; transform: scale(1.02); }
+            100% { opacity: 1; transform: scale(1); }
+        }
 
-        h1 {
-            font-family: var(--font-titulo);
-            font-size: 3rem;
-            margin: 0 0 10px 0;
-            color: var(--cor-texto-principal);
-            line-height: 1;
-            font-weight: 600;
-        }
-        
-        h2 {
-            font-family: var(--font-texto);
-            font-size: 1.25rem;
-            color: var(--cor-destaque-ori); 
-            margin-bottom: 25px;
-            font-weight: 500;
-        }
+        h1 {
+            font-family: var(--font-titulo);
+            font-size: 3rem;
+            margin: 0 0 10px 0;
+            color: var(--cor-texto-principal);
+            line-height: 1;
+            font-weight: 600;
+        }
+        
+        h2 {
+            font-family: var(--font-texto);
+            font-size: 1.25rem;
+            color: var(--cor-destaque-ori); 
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
 
-        /* TEXTO PRINCIPAL COM COR SECUNDÁRIA (GRAFITE) */
-        .card-front p {
-            font-size: 1.1rem; 
-            line-height: 1.6;
-            margin-bottom: 20px;
-            color: var(--cor-texto-secundario);
-            text-align: justify;
-        }
-        
-        /* PALAVRAS EM NEGRITO COM A COR PRINCIPAL (PRETO) */
-        .card-front b {
-            font-weight: 700;
-            color: var(--cor-texto-principal);
-        }
+        .card-front p {
+            font-size: 1.1rem; 
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: var(--cor-texto-secundario);
+            text-align: justify;
+        }
+        
+        .card-front b {
+            font-weight: 700;
+            color: var(--cor-texto-principal);
+        }
 
-        .cta-contato {
-            margin-top: 30px;
-            padding: 10px;
-            border-top: 1px solid rgba(183, 137, 114, 0.4); 
-            text-align: center;
-        }
+        .cta-contato {
+            margin-top: 30px;
+            padding: 10px;
+            border-top: 1px solid rgba(183, 137, 114, 0.4); 
+            text-align: center;
+        }
 
-        .iscas-visuais {
-            color: var(--cor-ewe-verde);
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
+        .iscas-visuais {
+            color: var(--cor-ewe-verde);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
 
-        /* [CORREÇÃO DE ALINHAMENTO 1] */
-        .cta-contato p {
-            font-size: 1.1rem;
-            margin-bottom: 10px; 
-            color: var(--cor-texto-principal); 
-            font-weight: 400;
-            text-align: center;
-            /* Garante que o <a> fique na mesma linha */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px; /* Espaço entre o texto e o link */
-        }
-        
-        .cta-contato a {
-          _ font-weight: 500;
-            color: var(--cor-destaque-ori); /* Cor terracota original */
-            text-decoration: none;
-            /* margin: 0 10px; (Removido, usando gap) */
-            transition: color 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-        }
+        .cta-contato p {
+            font-size: 1.1rem;
+            margin-bottom: 10px; 
+            color: var(--cor-texto-principal); 
+            font-weight: 400;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px; /* Espaço entre o texto e o link */
+        }
+        
+        .cta-contato a {
+            font-weight: 500;
+            color: var(--cor-destaque-ori);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px; /* Espaço entre o @ e o ícone */
+        }
 
-        .cta-contato a:hover {
-            color: var(--cor-acento-secundario);
-        }
-        
-        .cta-contato a .fa-instagram {
-            color: var(--cor-instagram);
-            font-size: 1.1em;
-        }
+        .cta-contato a:hover {
+            color: var(--cor-acento-secundario);
+        }
+        
+        .cta-contato a .fa-instagram {
+            color: var(--cor-instagram);
+            font-size: 1.1em;
+        }
 
-        /* [CORREÇÃO DE ALINHAMENTO 2] */
-        .dev-info {
-            font-size: 0.85rem;
-            color: var(--cor-texto-principal);
-            margin-top: 30px;
-            opacity: 0.7;
-            text-align: center;
-            line-height: 1.4;
-        }
+        .dev-info {
+            font-size: 0.85rem;
+            color: var(--cor-texto-principal);
+            margin-top: 30px;
+            opacity: 0.7;
+            text-align: center;
+            line-height: 1.4;
+        }
 
-        .hashtag-info {
-            font-size: 0.9em;
-  _         color: var(--cor-ewe-verde);
-            margin-bottom: 8px;
-            display: block; /* Força a linha própria */
-            text-align: center; /* Garantia de centralização */
-        }
+        .hashtag-info {
+            font-size: 0.9em;
+            color: var(--cor-ewe-verde);
+            margin-bottom: 8px;
+            display: block;
+            text-align: center;
+        }
 
-        .credito-info {
-            display: block; /* Força a linha própria */
-            text-align: center; /* Garantia de centralização */
-            /* margin-bottom: 8px; (Removido, já está no <p> ) */
-        }
+        .credito-info {
+            display: block;
+            text-align: center;
+        }
 
-        .instagram-link {
-            color: var(--cor-texto-principal);
-            font-weight: 500;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            transition: color 0.3s ease;
-        }
+        .instagram-link {
+            color: var(--cor-texto-principal);
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px; /* Espaço entre o @ e o ícone */
+            transition: color 0.3s ease;
+        }
 
-        .instagram-link:hover {
-            color: var(--cor-destaque-ori);
-        }
+        .instagram-link:hover {
+            color: var(--cor-destaque-ori);
+        }
 
-        .instagram-link .fa-instagram {
-            color: var(--cor-instagram);
-            font-size: 0.9em;
-        }
-        
-        .axe-final {
-            font-family: var(--font-titulo);
-            font-size: 1.3rem;
-            color: var(--cor-destaque-ori);
-            font-weight: 600;
-            margin-top: 15px;
-            display: block;
-            text-align: center;
-        }
-        
-        @media (max-width: 768px) {
-            
-            body {
-                padding-left: 20px; 
-                padding-right: 20px;
-        _   }
-            
-            h1 {
-                font-size: 2.5rem; 
-            }
-            .card-front p {
-                font-size: 1.1rem;
-                text-align: justify;
-            }
-            
-            .card-face {
-                padding: 40px 20px;
-            }
-            
-            .dev-info {
-                font-size: 0.8rem;
-            }
-        }
-    </style>
+        .instagram-link .fa-instagram {
+            color: var(--cor-instagram);
+            font-size: 0.9em;
+        }
+        
+        .axe-final {
+            font-family: var(--font-titulo);
+            font-size: 1.3rem;
+            color: var(--cor-destaque-ori);
+            font-weight: 600;
+            margin-top: 15px;
+            display: block;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            
+            body {
+                padding-left: 5px; /* Reduz padding para caber mais */
+                padding-right: 5px;
+            }
+
+            .tilt-wrapper {
+                width: 95%; /* Ocupa mais a tela */
+            }
+            
+            h1 {
+                font-size: 2.5rem; 
+            }
+            .card-front p {
+                font-size: 1.1rem;
+                text-align: justify;
+            }
+            
+            .card-face {
+                padding: 40px 25px; /* Ajusta padding interno */
+            }
+            
+            .dev-info {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 380px) {
+             .card-face {
+                padding: 30px 15px; /* Mais redução para telas mínimas */
+            }
+            h1 {
+                font-size: 2.2rem;
+            }
+            h2 {
+                font-size: 1.1rem;
+            }
+            .card-front p {
+                font-size: 1rem;
+            }
+            .cta-contato p {
+                font-size: 1rem;
+                flex-direction: column; /* Coloca o link abaixo em telas muito pequenas */
+                gap: 5px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <div class="tilt-wrapper" id="tilt-wrapper">
-        
-        <div class="container-flipper" id="flip-container">
-            
-            <div class="card-face card-front">
-                
-                <div class="coroa-icon">
-                    <i class="fa-brands fa-pagelines"></i> 
-                </div> 
+    <div class="tilt-wrapper" id="tilt-wrapper">
+        
+        <div class="container-flipper" id="flip-container">
+            
+            <div class="card-face card-front">
+                
+                <div class="coroa-icon">
+                    <i class="fa-brands fa-pagelines"></i> 
+                </div> 
 
-                <h1>Afrotunde</h1>
-                <h2>O Seu Santuário Digital de Beleza Ancestral</h2>
-                
-                <p>
-                    <b>Chegou a hora de coroar o Ori!</b> Estamos finalizando cada detalhe <b>premium</b> da nossa página pra que sua experiência seja tão divina quanto um <b>dreadlock</b>, uma <b>trança nagô</b> ou um <b>penteado style</b> bem feito.
-                    <br><br>
-                    Aqui é sobre celebrar quem somos — <b>pretos</b>, potentes e cheios de <b>Axé</b>. O brilho do nosso cabelo e a força da nossa <b>coroa</b> são símbolos do nosso <b>poder</b> e da nossa <b>ancestralidade</b> em movimento.
-                </p>
-                
-                <p>
-                    O <b>Santuário</b> Digital nasce com <b>amor</b>, tecnologia e <b>propósito</b>: crescer juntos, <b>fortalecer</b> a cada talento preto que faz a <b>revolução</b> acontecer — com <b>arte</b>, código e <b>coração</b>.
-                    <span class="axe-final">Axé!</span>
-  _             </p>
-                
-        _       <div class="cta-contato">
-                    <p>para <span class="iscas-visuais">agendamentos</span>:
-                        <a href="https://www.instagram.com/afrotunde/" target="_blank" rel="noopener noreferrer">
-                            @afrotunde <i class="fab fa-instagram"></i>                         </a>
-                    </p>
-                </div>
-                
-                <p class="dev-info">
-                    <span class="hashtag-info">#CrespoÉLindo | #OrgulhoPreto</span>
-                    <span class="credito-info">
-                        Um projeto premium, criado por: 
-                        <a href="https://www.instagram.com/pablit0rg/" target="_blank" rel="noopener noreferrer" class="instagram-link">
-                            @pablit0rg <i class="fab fa-instagram"></i>                         </a>
-                    </span>
-                </p>
-            </div>
-            
-            <div class="card-face card-back">
-                
-                <h2>Conecte-se</h2>
-                <p>
-                    O futuro é ancestral e <span class="destaque-digital">digital</span>.
-                    <br>
-                    Em breve, o santuário completo.
-        _       </p>
-                
-                <img src="https://raw.githubusercontent.com/Pablit0rg/breve-afrotunde/main/capa.png" alt="Ilustração Afrotunde" class="card-back-image">
-                
-                <p class="dev-info">
-                    <strong>(Clique para a mensagem)</strong>
-                </p>
-    _     </div>
-        </div>
-    </div>
+                <h1>Afrotunde</h1>
+                <h2>O Seu Santuário Digital de Beleza Ancestral</h2>
+                
+                <p>
+                    <b>Chegou a hora de coroar o Ori!</b> Estamos finalizando cada detalhe <b>premium</b> da nossa página pra que sua experiência seja tão divina quanto um <b>dreadlock</b>, uma <b>trança nagô</b> ou um <b>penteado style</b> bem feito.
+                    <br><br>
+                    Aqui é sobre celebrar quem somos — <b>pretos</b>, potentes e cheios de <b>Axé</b>. O brilho do nosso cabelo e a força da nossa <b>coroa</b> são símbolos do nosso <b>poder</b> e da nossa <b>ancestralidade</b> em movimento.
+                </p>
+                
+                <p>
+                    O <b>Santuário</b> Digital nasce com <b>amor</b>, tecnologia e <b>propósito</b>: crescer juntos, <b>fortalecer</b> a cada talento preto que faz a <b>revolução</b> acontecer — com <b>arte</b>, código e <b>coração</b>.
+                    <span class="axe-final">Axé!</span>
+                </p>
+                
+                <div class="cta-contato">
+                    <p>para <span class="iscas-visuais">agendamentos</span>:
+                        <a href="https://www.instagram.com/afrotunde/" target="_blank" rel="noopener noreferrer">
+                            @afrotunde <i class="fab fa-instagram"></i>
+                        </a>
+                    </p>
+                </div>
+                
+                <p class="dev-info">
+                    <span class="hashtag-info">#CrespoÉLindo | #OrgulhoPreto</span>
+                    <span class="credito-info">
+                        Um projeto premium, criado por: 
+                        <a href="https://www.instagram.com/pablit0rg/" target="_blank" rel="noopener noreferrer" class="instagram-link">
+                            @pablit0rg <i class="fab fa-instagram"></i>
+                        </a>
+                    </span>
+                </p>
+            </div>
+            
+            <div class="card-face card-back">
+                
+                <h2>Conecte-se</h2>
+                <p>
+                    O futuro é ancestral e <span class="destaque-digital">digital</span>.
+                    <br>
+                    Em breve, o santuário completo.
+                </p>
+                
+                <img src="https://raw.githubusercontent.com/Pablit0rg/breve-afrotunde/main/capa.png" alt="Ilustração Afrotunde" class="card-back-image">
+                
+                <p class="dev-info">
+                    <strong>(Clique para a mensagem)</strong>
+                </p>
+            </div>
+        </div>
+    </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            
-            const tiltWrapper = document.getElementById('tilt-wrapper'); 
-            if (tiltWrapper) {
-                const maxTilt = 5; 
-                const transitionDuration = '0.4s';
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            const tiltWrapper = document.getElementById('tilt-wrapper'); 
+            if (tiltWrapper) {
+                const maxTilt = 5; 
+                const transitionDuration = '0.4s';
 
-                const applyTilt = (rotateX, rotateY) => {
-                    tiltWrapper.style.transition = 'transform ' + transitionDuration + ' ease-out';
-                    tiltWrapper.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-                };
+                const applyTilt = (rotateX, rotateY) => {
+                    tiltWrapper.style.transition = 'transform ' + transitionDuration + ' ease-out';
+                    tiltWrapper.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                };
 
-                const resetTilt = () => {
-            _       tiltWrapper.style.transition = 'transform 0.6s cubic-bezier(.17,.84,.44,1)';
-                    tiltWrapper.style.transform = 'rotateX(0deg) rotateY(0deg)';
-                };
+                const resetTilt = () => {
+                    tiltWrapper.style.transition = 'transform 0.6s cubic-bezier(.17,.84,.44,1)';
+                    tiltWrapper.style.transform = 'rotateX(0deg) rotateY(0deg)';
+                };
 
-                const isMobile = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+                const isMobile = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 
-                if (window.DeviceOrientationEvent && isMobile) {
-                    window.addEventListener('deviceorientation', (event) => {
-                        let tiltX = event.beta; 
-          _           let tiltY = event.gamma;
-                        
-                        tiltX = Math.min(Math.max(tiltX, -45), 45);
-                        tiltY = Math.min(Math.max(tiltY, -45), 45);
-                        
-                        let rotateX = (tiltX / 45) * -maxTilt;
-                        let rotateY = (tiltY / 45) * maxTilt; 
-                        
-                        applyTilt(rotateX, rotateY);
-                    });
-                } else { 
-                    tiltWrapper.addEventListener('mousemove', (e) => {
-                        const rect = tiltWrapper.getBoundingClientRect();
-                        const x = (e.clientX - rect.left) / rect.width - 0.5;
-                        const y = (e.clientY - rect.top) / rect.height - 0.5;
+                if (window.DeviceOrientationEvent && isMobile) {
+                    window.addEventListener('deviceorientation', (event) => {
+                        let tiltX = event.beta; 
+                        let tiltY = event.gamma;
+                        
+                        tiltX = Math.min(Math.max(tiltX, -45), 45);
+                        tiltY = Math.min(Math.max(tiltY, -45), 45);
+                        
+                        let rotateX = (tiltX / 45) * -maxTilt;
+                        let rotateY = (tiltY / 45) * maxTilt; 
+                        
+                        applyTilt(rotateX, rotateY);
+                    });
+                } else { 
+                    tiltWrapper.addEventListener('mousemove', (e) => {
+                        const rect = tiltWrapper.getBoundingClientRect();
+                        const x = (e.clientX - rect.left) / rect.width - 0.5;
+                        const y = (e.clientY - rect.top) / rect.height - 0.5;
 
-                        const rotateX = y * (-maxTilt * 2); 
-                        const rotateY = x * (maxTilt * 2); 
-                        
-                        applyTilt(rotateX, rotateY);
-                    });
-                    tiltWrapper.addEventListener('mouseleave', resetTilt);
-s           }
-            }
-            
-            const flipContainer = document.getElementById('flip-container');
-            if (flipContainer) {
-                flipContainer.addEventListener('click', () => {
-                    flipContainer.classList.toggle('is-flipped');
-                });
-            }
-            
-        });
-    </script>
+                        const rotateX = y * (-maxTilt * 2); 
+                        const rotateY = x * (maxTilt * 2); 
+                        
+                        applyTilt(rotateX, rotateY);
+                    });
+                    tiltWrapper.addEventListener('mouseleave', resetTilt);
+                }
+            }
+            
+            const flipContainer = document.getElementById('flip-container');
+            if (flipContainer) {
+                flipContainer.addEventListener('click', () => {
+                    flipContainer.classList.toggle('is-flipped');
+                });
+            }
+            
+        });
+    </script>
 </body>
 </html>
