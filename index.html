@@ -130,6 +130,9 @@
             color: var(--cor-texto-principal);
             font-weight: bold;
             opacity: 1;
+            /* [CORREÇÃO DE ALINHAMENTO] Resetando estilos do dev-info da frente */
+            line-height: 1.4; 
+            margin-top: 30px;
         }
 
         .coroa-icon {
@@ -203,13 +206,14 @@
             transition: color 0.3s ease;
         }
 
+        /* [CORREÇÃO DE ALINHAMENTO 1] */
         .cta-contato p {
             font-size: 1.1rem;
             margin-bottom: 10px; 
             color: var(--cor-texto-principal); 
             font-weight: 400;
             text-align: center;
-            /* [CORREÇÃO] Garante que o <a> fique na mesma linha */
+            /* Garante que o <a> fique na mesma linha */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -218,7 +222,7 @@
         
         .cta-contato a {
             font-weight: 500;
-            color: var(--cor-destaque-ori);
+            color: var(--cor-destaque-ori); /* Cor terracota original */
             text-decoration: none;
             /* margin: 0 10px; (Removido, usando gap) */
             transition: color 0.3s ease;
@@ -236,7 +240,7 @@
             font-size: 1.1em;
         }
 
-        /* ESTILOS PARA A SEÇÃO DE CRÉDITOS (DO SEU CÓDIGO) */
+        /* [CORREÇÃO DE ALINHAMENTO 2] */
         .dev-info {
             font-size: 0.85rem;
             color: var(--cor-texto-principal);
@@ -250,12 +254,14 @@
             font-size: 0.9em;
             color: var(--cor-ewe-verde);
             margin-bottom: 8px;
-            display: block;
+            display: block; /* Força a linha própria */
+            text-align: center; /* Garantia de centralização */
         }
 
         .credito-info {
-            display: block;
-            margin-bottom: 8px;
+            display: block; /* Força a linha própria */
+            text-align: center; /* Garantia de centralização */
+            /* margin-bottom: 8px; (Removido, já está no <p> ) */
         }
 
         .instagram-link {
@@ -366,7 +372,7 @@
                     Em breve, o santuário completo.
                 </p>
                 
-                <img src="https://raw.githubusercontent.com/Pablit0rg/breve-afrotunde/main/capa.png" alt="Ilustração de Oxum - Afrotunde" class="card-back-image">
+                <img src="https://raw.githubusercontent.com/Pablit0rg/breve-afrotunde/main/capa.png" alt="Ilustração Afrotunde" class="card-back-image">
                 
                 <p class="dev-info">
                     <strong>(Clique para a mensagem)</strong>
