@@ -282,9 +282,16 @@
             text-align: center;
         }
         
+        /* **********************************************
+         * AJUSTES PARA O CARD CABER NO MOBILE (SEM SCROLL)
+         **********************************************
+        */
         @media (max-width: 768px) {
             
+            /* 1. Reduz padding do body para dar mais espaço */
             body {
+                padding-top: 2vh; 
+                padding-bottom: 2vh;
                 padding-left: 5px;
                 padding-right: 5px;
             }
@@ -293,38 +300,68 @@
                 width: 95%;
             }
             
+            /* 2. Reduz padding interno do card */
+            .card-face {
+                padding: 25px 20px; /* Era 40px 25px */
+            }
+
+            /* 3. Reduz ícone e seu espaço */
+            .coroa-icon {
+                font-size: 3rem; /* Era 3.5rem */
+                margin-bottom: 10px; /* Era 15px */
+            }
+
+            /* 4. Reduz fontes e margens dos textos */
             h1 {
-                font-size: 2.5rem; 
+                font-size: 2.3rem; /* Era 2.5rem */
+                margin-bottom: 8px; /* Era 10px */
+            }
+            h2 {
+                font-size: 1.15rem; /* Era 1.25rem */
+                margin-bottom: 15px; /* Era 25px */
             }
             .card-front p {
-                font-size: 1.1rem;
-                text-align: justify;
+                font-size: 1rem; /* Era 1.1rem */
+                line-height: 1.5; /* Era 1.6 */
+                margin-bottom: 15px; /* Era 20px */
             }
-            
-            .card-face {
-                padding: 40px 25px;
+            .axe-final {
+                font-size: 1.1rem; /* Era 1.3rem */
+                margin-top: 10px; /* Era 15px */
             }
-            
+
+            /* 5. Reduz espaços dos links/créditos */
+            .cta-contato {
+                margin-top: 20px; /* Era 30px */
+                padding-top: 8px; /* Era 10px */
+            }
+            .cta-contato p {
+                font-size: 1rem; /* Era 1.1rem */
+                margin-bottom: 5px; /* Era 10px */
+            }
             .dev-info {
-                font-size: 0.8rem;
+                font-size: 0.8rem; /* Mantido */
+                margin-top: 20px; /* Era 30px */
             }
         }
 
         @media (max-width: 380px) {
+             /* * Ajustes FINAIS para telas BEM pequenas
+              */
              .card-face {
-                padding: 30px 15px;
+                padding: 20px 15px; /* Era 30px 15px */
             }
             h1 {
-                font-size: 2.2rem;
+                font-size: 2.1rem; /* Era 2.2rem */
             }
             h2 {
                 font-size: 1.1rem;
             }
             .card-front p {
-                font-size: 1rem;
+                font-size: 0.95rem; /* Era 1rem */
             }
             .cta-contato p {
-                font-size: 1rem;
+                font-size: 0.95rem; /* Era 1rem */
                 flex-direction: column;
                 gap: 5px;
             }
