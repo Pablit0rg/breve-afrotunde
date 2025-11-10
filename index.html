@@ -105,13 +105,26 @@
         .card-back h2 {
             font-family: var(--font-titulo);
             font-size: 2rem;
-            color: var(--cor-ewe-verde); /* ALTERADO: Verde do agendamentos */
+            color: var(--cor-ewe-verde); /* Verde do agendamentos */
             margin: 0 0 15px 0;
         }
         .card-back p {
             font-size: 1.1rem;
             text-align: center;
-            color: var(--cor-destaque-ori); /* ALTERADO: Cor amarronzada do santuário */
+            color: var(--cor-destaque-ori); /* Cor amarronzada do santuário */
+        }
+
+        /* NOVA CLASSE PARA O TEXTO "DIGITAL" EM VERDE */
+        .destaque-digital {
+            color: var(--cor-ewe-verde);
+            font-weight: 600;
+        }
+
+        /* ESTILO ESPECÍFICO PARA O "(TOQUE PARA VOLTAR)" NO CARD-BACK */
+        .card-back .dev-info {
+            color: var(--cor-texto-principal);
+            font-weight: bold;
+            opacity: 1;
         }
 
         .coroa-icon {
@@ -307,7 +320,7 @@
                 
                 <h2>Conecte-se</h2>
                 <p>
-                    O futuro é ancestral e digital.
+                    O futuro é ancestral e <span class="destaque-digital">digital</span>.
                     <br>
                     Em breve, o santuário completo.
                 </p>
@@ -315,7 +328,7 @@
                 <img src="capa-afrotunde.jpg" alt="Ilustração de Oxum - Afrotunde" class="card-back-image">
                 
                 <p class="dev-info">
-                    (Toque para voltar)
+                    <strong>(Toque para voltar)</strong>
                 </p>
             </div>
         </div>
