@@ -231,19 +231,53 @@
             font-size: 1.1em;
         }
 
+        /* NOVOS ESTILOS PARA A SEÇÃO DE CRÉDITOS REORGANIZADA */
         .dev-info {
             font-size: 0.85rem;
             color: var(--cor-texto-principal);
             margin-top: 30px;
             opacity: 0.7;
             text-align: center;
+            line-height: 1.4;
         }
-        .dev-info a {
+
+        .hashtag-info {
+            font-size: 0.9em;
+            color: var(--cor-ewe-verde);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .credito-info {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .instagram-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .instagram-links a {
             color: var(--cor-texto-principal);
             font-weight: 500;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.3s ease;
         }
-        .dev-info a:hover {
+
+        .instagram-links a:hover {
             color: var(--cor-destaque-ori);
+        }
+
+        .instagram-links .fa-instagram {
+            color: var(--cor-instagram);
+            font-size: 0.9em;
         }
         
         .axe-final {
@@ -254,12 +288,6 @@
             margin-top: 15px;
             display: block;
             text-align: center;
-        }
-        
-        .hashtag-info {
-            font-size: 0.9em;
-            color: var(--cor-ewe-verde);
-            margin-top: 5px;
         }
         
         @media (max-width: 768px) {
@@ -279,6 +307,21 @@
             
             .card-face {
                 padding: 40px 20px;
+            }
+
+            .instagram-links {
+                gap: 10px;
+            }
+            
+            .dev-info {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .instagram-links {
+                flex-direction: column;
+                gap: 5px;
             }
         }
     </style>
@@ -317,9 +360,16 @@
                 </div>
                 
                 <p class="dev-info">
-                    <span class="hashtag-info">#BlackGirlMagic | #CrespoÉLindo</span>
-                    Um projeto premium, criado por: 
-                    <a href="https://www.instagram.com/pablit0rg/" target="_blank" rel="noopener noreferrer">@pablit0rg</a>
+                    <span class="hashtag-info">#CrespoÉLindo | #OrgulhoPreto</span>
+                    <span class="credito-info">Um projeto premium, criado por:</span>
+                    <span class="instagram-links">
+                        <a href="https://www.instagram.com/pablit0rg/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-instagram"></i> @pablit0rg
+                        </a>
+                        <a href="https://www.instagram.com/afrotunde/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-instagram"></i> @afrotunde
+                        </a>
+                    </span>
                 </p>
             </div>
             
