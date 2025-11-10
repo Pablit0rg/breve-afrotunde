@@ -16,11 +16,12 @@
         :root {
             --cor-fundo-base: #fcfaf5;
             --cor-texto-principal: #3f3a34;
-            --cor-texto-secundario: #6b6259; /* NOVA COR: Grafite suave */
+            --cor-texto-secundario: #6b6259;
             --cor-destaque-ori: #b78972;
             --cor-acento-secundario: #f0b8aa;
             --cor-ewe-verde: #4a5c4a;
             --cor-instagram: #E1306C;
+            --cor-rosa-oxum: #e8c4c4; /* NOVA COR: Rosa suave inspirado em Oxum */
             --font-titulo: 'Cormorant Garamond', serif;
             --font-texto: 'Source Serif 4', serif; 
         }
@@ -89,7 +90,7 @@
             z-index: 2;
         }
 
-        /* [FLIP] A FACE DE TRÁS */
+        /* [FLIP] A FACE DE TRÁS - AGORA COM FUNDO ROSA OXUM */
         .card-back {
             position: absolute; 
             top: 0;
@@ -101,18 +102,21 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            /* NOVO FUNDO ROSA */
+            background-color: var(--cor-rosa-oxum);
+            border: 1px solid rgba(232, 196, 196, 0.5);
         }
 
         .card-back h2 {
             font-family: var(--font-titulo);
             font-size: 2rem;
-            color: var(--cor-ewe-verde); /* Verde do agendamentos */
+            color: var(--cor-ewe-verde);
             margin: 0 0 15px 0;
         }
         .card-back p {
             font-size: 1.1rem;
             text-align: center;
-            color: var(--cor-destaque-ori); /* Cor amarronzada do santuário */
+            color: var(--cor-destaque-ori);
         }
 
         /* NOVA CLASSE PARA O TEXTO "DIGITAL" EM VERDE */
@@ -140,12 +144,12 @@
             color: var(--cor-ewe-verde); 
         }
 
-        /* CSS PARA A IMAGEM NO VERSO */
+        /* CSS PARA A IMAGEM NO VERSO - MANTIDA SOBRE O FUNDO ROSA */
         .card-back-image {
-            max-width: 250px; /* Limita o tamanho máximo */
+            max-width: 250px;
             width: 100%;
-            height: auto; /* Mantém a proporção correta */
-            margin-bottom: 15px; /* Espaçamento igual ao do ícone */
+            height: auto;
+            margin-bottom: 15px;
         }
 
 
@@ -177,14 +181,14 @@
             font-size: 1.1rem; 
             line-height: 1.6;
             margin-bottom: 20px;
-            color: var(--cor-texto-secundario); /* MUDANÇA: Grafite suave */
+            color: var(--cor-texto-secundario);
             text-align: justify;
         }
         
         /* MANTÉM AS PALAVRAS EM NEGRITO COM A COR PRINCIPAL (PRETO) */
         .card-front b {
             font-weight: 700;
-            color: var(--cor-texto-principal); /* MUDANÇA: Preto original */
+            color: var(--cor-texto-principal);
         }
 
         .cta-contato {
