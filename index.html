@@ -130,6 +130,9 @@
             color: var(--cor-texto-principal);
             font-weight: bold;
             opacity: 1;
+            /* [CORREÇÃO DE ALINHAMENTO] Resetando estilos do dev-info da frente */
+            line-height: 1.4; 
+            margin-top: 30px;
         }
 
         .coroa-icon {
@@ -203,9 +206,10 @@
             transition: color 0.3s ease;
         }
 
+        /* [CORREÇÃO DE ALINHAMENTO] Garantindo que o P do CTA seja centralizado */
         .cta-contato p {
             font-size: 1.1rem;
-            margin-bottom: 10px; 
+            margin-bottom: 0; /* Removido margin-bottom para a linha única */
             color: var(--cor-texto-principal); 
             font-weight: 400;
             text-align: center;
@@ -231,7 +235,7 @@
             font-size: 1.1em;
         }
 
-        /* NOVOS ESTILOS PARA A SEÇÃO DE CRÉDITOS REORGANIZADA */
+        /* [CORREÇÃO DE ALINHAMENTO] CSS do rodapé como o senhor pediu */
         .dev-info {
             font-size: 0.85rem;
             color: var(--cor-texto-principal);
@@ -245,23 +249,17 @@
             font-size: 0.9em;
             color: var(--cor-ewe-verde);
             margin-bottom: 8px;
-            display: block;
+            display: block; /* Força a linha própria */
+            text-align: center;
         }
 
         .credito-info {
-            display: block;
-            margin-bottom: 8px;
+            display: block; /* Força a linha própria */
+            text-align: center;
+            /* margin-bottom: 8px; (removido para não ter espaço extra) */
         }
 
-        .instagram-links {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .instagram-links a {
+        .instagram-link {
             color: var(--cor-texto-principal);
             font-weight: 500;
             text-decoration: none;
@@ -271,11 +269,11 @@
             transition: color 0.3s ease;
         }
 
-        .instagram-links a:hover {
+        .instagram-link:hover {
             color: var(--cor-destaque-ori);
         }
 
-        .instagram-links .fa-instagram {
+        .instagram-link .fa-instagram {
             color: var(--cor-instagram);
             font-size: 0.9em;
         }
@@ -308,20 +306,9 @@
             .card-face {
                 padding: 40px 20px;
             }
-
-            .instagram-links {
-                gap: 10px;
-            }
             
             .dev-info {
                 font-size: 0.8rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .instagram-links {
-                flex-direction: column;
-                gap: 5px;
             }
         }
     </style>
@@ -353,21 +340,19 @@
                 </p>
                 
                 <div class="cta-contato">
-                    <p>para <span class="iscas-visuais">agendamentos</span>:</p>
-                    <a href="https://www.instagram.com/afrotunde/" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-instagram"></i> @afrotunde
-                    </a>
+                    <p>para <span class="iscas-visuais">agendamentos</span>:
+                        <a href="https://www.instagram.com/afrotunde/" target="_blank" rel="noopener noreferrer" class="instagram-link">
+                            <i class="fab fa-instagram"></i> @afrotunde
+                        </a>
+                    </p>
                 </div>
                 
                 <p class="dev-info">
                     <span class="hashtag-info">#CrespoÉLindo | #OrgulhoPreto</span>
-                    <span class="credito-info">Um projeto premium, criado por:</span>
-                    <span class="instagram-links">
-                        <a href="https://www.instagram.com/pablit0rg/" target="_blank" rel="noopener noreferrer">
+                    <span class="credito-info">
+                        Um projeto premium, criado por: 
+                        <a href="https://www.instagram.com/pablit0rg/" target="_blank" rel="noopener noreferrer" class="instagram-link">
                             <i class="fab fa-instagram"></i> @pablit0rg
-                        </a>
-                        <a href="https://www.instagram.com/afrotunde/" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-instagram"></i> @afrotunde
                         </a>
                     </span>
                 </p>
@@ -382,7 +367,7 @@
                     Em breve, o santuário completo.
                 </p>
                 
-                <img src="capa.png" alt="Ilustração de Oxum - Afrotunde" class="card-back-image">
+                <img src="https://raw.githubusercontent.com/Pablit0rg/breve-afrotunde/main/capa.png" alt="Ilustração Afrotunde" class="card-back-image">
                 
                 <p class="dev-info">
                     <strong>(Clique para a mensagem)</strong>
