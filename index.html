@@ -96,15 +96,13 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: space-around; /* Distribuir os 3 blocos */
+            justify-content: space-around; 
             background-color: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
-        /* [MUDANÇA] Novo container para agrupar o texto do topo */
         .card-back-header {
-            /* Este container vai segurar o H2 e o P */
             text-align: center;
         }
 
@@ -133,7 +131,7 @@
             text-align: center;
             color: var(--cor-destaque-ori);
             margin: 0; 
-            margin-top: 15px; /* Adiciona espaço entre o h2 e o p dentro do header */
+            margin-top: 15px;
         }
 
         .destaque-digital {
@@ -146,7 +144,7 @@
             font-weight: bold;
             opacity: 1;
             line-height: 1.4; 
-            margin: 0; /* Removido margem e min-height */
+            margin: 0; 
         }
 
         .coroa-icon {
@@ -162,7 +160,8 @@
         }
 
         .card-back-image {
-            max-width: 280px; /* [MUDANÇA] Aumentado de 250px para 280px */
+            /* [MUDANÇA] A imagem agora ocupa 100% do espaço no desktop */
+            max-width: 100%; 
             width: 100%;
             height: auto;
             margin: 0;
@@ -355,26 +354,27 @@
 
             /* [MUDANÇA] Ajustes de mobile para o card-back */
             .card-back h2 {
-                font-size: 1.8rem; /* Um pouco menor no mobile */
+                font-size: 1.8rem; 
                 padding-bottom: 10px;
             }
             .card-back h2::after {
-                height: 2px; /* Linha mais fina */
+                height: 2px; 
                 width: 50px;
             }
             .card-back p {
-                font-size: 1rem; /* Um pouco menor */
+                font-size: 1rem; 
                 margin-top: 10px;
             }
             .card-back-image {
-                max-width: 200px; /* Imagem menor no mobile para caber */
+                /* No mobile, mantemos a imagem pequena para não vazar */
+                max-width: 200px; 
             }
 
         }
 
         @media (max-width: 380px) {
              .card-face {
-                padding: 20px 15px;
+                padding: 20px 15px; 
             }
             h1 {
                 font-size: 2.1rem;
@@ -383,10 +383,10 @@
                 font-size: 1.1rem;
             }
             .card-front p {
-                font-size: 0.95rem;
+                font-size: 0.95rem; 
             }
             .cta-contato p {
-                font-size: 0.95rem;
+                font-size: 0.95rem; 
                 flex-direction: column;
                 gap: 5px;
             }
