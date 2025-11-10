@@ -43,7 +43,6 @@
             box-sizing: border-box;
         }
         
-        /* [FLIP] 1. O WRAPPER EXTERNO (CHASSI DO TILT) */
         .tilt-wrapper {
             max-width: 500px;
             width: 90%;
@@ -52,7 +51,6 @@
             transform-style: preserve-3d;
         }
 
-        /* [FLIP] 2. O MIOLO QUE GIRA (FLIP) */
         .container-flipper {
             position: relative;
             width: 100%;
@@ -65,7 +63,6 @@
             transform: rotateY(180deg);
         }
 
-        /* [FLIP] 3. AS FACES (FRENTE E VERSO) */
         .card-face {
             background-color: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
@@ -84,13 +81,11 @@
             background-color: rgba(255, 255, 255, 0.3);
         }
         
-        /* [FLIP] A FACE DA FRENTE */
         .card-front {
             position: relative; 
             z-index: 2;
         }
 
-        /* [FLIP] A FACE DE TRÁS */
         .card-back {
             position: absolute; 
             top: 0;
@@ -101,7 +96,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: space-around; /* Distribuir espaço igualmente */
+            justify-content: space-around; /* Distribuir espaço */
             background-color: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.3);
@@ -111,15 +106,30 @@
             font-family: var(--font-titulo);
             font-size: 2rem;
             color: var(--cor-ewe-verde);
-            margin: 0; /* Removido margem fixa */
-            min-height: 1.5em; /* Garante um pouco de espaço vertical */
+            margin: 0; 
+            min-height: 1.5em; 
+            position: relative; /* Posição para a linha */
+            padding-bottom: 15px; /* Espaço para a linha */
         }
+
+        /* [NOVA REGRA] A linha verde debaixo do "Conecte-se" */
+        .card-back h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0; /* No fundo do padding do h2 */
+            left: 50%;
+            transform: translateX(-50%); /* Centraliza */
+            width: 60px;
+            height: 3px;
+            background-color: var(--cor-ewe-verde);
+        }
+
         .card-back p {
             font-size: 1.1rem;
             text-align: center;
             color: var(--cor-destaque-ori);
-            margin: 0; /* Removido margem fixa */
-            min-height: 2em; /* Garante um pouco de espaço vertical */
+            margin: 0; 
+            min-height: 2em;
         }
 
         .destaque-digital {
@@ -132,8 +142,8 @@
             font-weight: bold;
             opacity: 1;
             line-height: 1.4; 
-            margin: 0; /* Removido margem fixa */
-            min-height: 1.5em; /* Garante um pouco de espaço vertical */
+            margin: 0; 
+            min-height: 1.5em;
         }
 
         .coroa-icon {
@@ -152,8 +162,8 @@
             max-width: 250px;
             width: 100%;
             height: auto;
-            margin: 0; /* Removido margem fixa */
-            display: block; /* Garante que a imagem se comporte bem com flexbox */
+            margin: 0;
+            display: block;
         }
 
         @keyframes pulse-glow {
@@ -214,7 +224,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px; /* Espaço entre o texto e o link */
+            gap: 8px;
         }
         
         .cta-contato a {
@@ -224,7 +234,7 @@
             transition: color 0.3s ease;
             display: inline-flex;
             align-items: center;
-            gap: 5px; /* Espaço entre o @ e o ícone */
+            gap: 5px;
         }
 
         .cta-contato a:hover {
@@ -264,7 +274,7 @@
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 4px; /* Espaço entre o @ e o ícone */
+            gap: 4px;
             transition: color 0.3s ease;
         }
 
@@ -287,13 +297,8 @@
             text-align: center;
         }
         
-        /* **********************************************
-         * AJUSTES PARA O CARD CABER NO MOBILE (SEM SCROLL)
-         **********************************************
-        */
         @media (max-width: 768px) {
             
-            /* 1. Reduz padding do body para dar mais espaço */
             body {
                 padding-top: 2vh; 
                 padding-bottom: 2vh;
@@ -305,68 +310,62 @@
                 width: 95%;
             }
             
-            /* 2. Reduz padding interno do card */
             .card-face {
-                padding: 25px 20px; /* Era 40px 25px */
+                padding: 25px 20px;
             }
 
-            /* 3. Reduz ícone e seu espaço */
             .coroa-icon {
-                font-size: 3rem; /* Era 3.5rem */
-                margin-bottom: 10px; /* Era 15px */
+                font-size: 3rem;
+                margin-bottom: 10px;
             }
 
-            /* 4. Reduz fontes e margens dos textos */
             h1 {
-                font-size: 2.3rem; /* Era 2.5rem */
-                margin-bottom: 8px; /* Era 10px */
+                font-size: 2.3rem;
+                margin-bottom: 8px;
             }
             h2 {
-                font-size: 1.15rem; /* Era 1.25rem */
-                margin-bottom: 15px; /* Era 25px */
+                font-size: 1.15rem;
+                margin-bottom: 15px;
             }
             .card-front p {
-                font-size: 1rem; /* Era 1.1rem */
-                line-height: 1.5; /* Era 1.6 */
-                margin-bottom: 15px; /* Era 20px */
+                font-size: 1rem;
+                line-height: 1.5;
+                margin-bottom: 15px;
             }
             .axe-final {
-                font-size: 1.1rem; /* Era 1.3rem */
-                margin-top: 10px; /* Era 15px */
+                font-size: 1.1rem;
+                margin-top: 10px;
             }
 
-            /* 5. Reduz espaços dos links/créditos */
             .cta-contato {
-                margin-top: 20px; /* Era 30px */
-                padding-top: 8px; /* Era 10px */
+                margin-top: 20px;
+                padding-top: 8px;
             }
             .cta-contato p {
-                font-size: 1rem; /* Era 1.1rem */
-                margin-bottom: 5px; /* Era 10px */
+                font-size: 1rem;
+                margin-bottom: 5px;
             }
             .dev-info {
-                font-size: 0.8rem; /* Mantido */
-                margin-top: 20px; /* Era 30px */
+                font-size: 0.8rem;
+                margin-top: 20px;
             }
         }
 
         @media (max-width: 380px) {
-             /* * Ajustes FINAIS para telas BEM pequenas
-              */
              .card-face {
-                padding: 20px 15px; /* Era 30px 15px */
+                padding: 20px 15px;
             }
             h1 {
-                font-size: 2.1rem; /* Era 2.2rem */
+                font-size: 2.1rem;
             }
             h2 {
                 font-size: 1.1rem;
             }
             .card-front p {
-                font-size: 0.95rem; /* Era 1rem */
+                font-size: 0.95rem;
             }
             .cta-contato p {
-                font-size: 0.95rem; /* Era 1rem */
+                font-size: 0.95rem;
                 flex-direction: column;
                 gap: 5px;
             }
@@ -440,6 +439,9 @@
         document.addEventListener('DOMContentLoaded', () => {
             
             const tiltWrapper = document.getElementById('tilt-wrapper'); 
+            const flipContainer = document.getElementById('flip-container');
+            
+            // --- 1. LÓGICA DO TILT ---
             if (tiltWrapper) {
                 const maxTilt = 5; 
                 const transitionDuration = '0.4s';
@@ -454,22 +456,47 @@
                     tiltWrapper.style.transform = 'rotateX(0deg) rotateY(0deg)';
                 };
 
+                // Handler para o giroscópio
+                const handleOrientation = (event) => {
+                    let tiltX = event.beta;  // Inclinação frente/trás
+                    let tiltY = event.gamma; // Inclinação esquerda/direita
+                    
+                    // Limita os valores para evitar rotações extremas
+                    tiltX = Math.min(Math.max(tiltX, -45), 45);
+                    tiltY = Math.min(Math.max(tiltY, -45), 45);
+                    
+                    let rotateX = (tiltX / 45) * -maxTilt;
+                    let rotateY = (tiltY / 45) * maxTilt;  
+                    
+                    applyTilt(rotateX, rotateY);
+                };
+
                 const isMobile = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 
                 if (window.DeviceOrientationEvent && isMobile) {
-                    window.addEventListener('deviceorientation', (event) => {
-                        let tiltX = event.beta; 
-                        let tiltY = event.gamma;
+                    
+                    // Verifica se o navegador precisa de permissão (ex: iOS 13+)
+                    if (typeof DeviceOrientationEvent.requestPermission === 'function') {
                         
-                        tiltX = Math.min(Math.max(tiltX, -45), 45);
-                        tiltY = Math.min(Math.max(tiltY, -45), 45);
-                        
-                        let rotateX = (tiltX / 45) * -maxTilt;
-                        let rotateY = (tiltY / 45) * maxTilt; 
-                        
-                        applyTilt(rotateX, rotateY);
-                    });
+                        const requestPermission = () => {
+                            DeviceOrientationEvent.requestPermission()
+                                .then(permissionState => {
+                                    if (permissionState === 'granted') {
+                                        window.addEventListener('deviceorientation', handleOrientation);
+                                    }
+                                })
+                                .catch(console.error);
+                        };
+                        // Pede permissão no PRIMEIRO clique no card
+                        flipContainer.addEventListener('click', requestPermission, { once: true });
+
+                    } else {
+                        // Navegadores que não precisam de permissão (ex: Android)
+                        window.addEventListener('deviceorientation', handleOrientation);
+                    }
+                    
                 } else { 
+                    // LÓGICA DO DESKTOP (Mouse)
                     tiltWrapper.addEventListener('mousemove', (e) => {
                         const rect = tiltWrapper.getBoundingClientRect();
                         const x = (e.clientX - rect.left) / rect.width - 0.5;
@@ -484,7 +511,7 @@
                 }
             }
             
-            const flipContainer = document.getElementById('flip-container');
+            // --- 2. LÓGICA DO FLIP (VIRAR O CARD) ---
             if (flipContainer) {
                 flipContainer.addEventListener('click', () => {
                     flipContainer.classList.toggle('is-flipped');
