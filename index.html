@@ -27,79 +27,53 @@
         body {
             font-family: var(--font-texto);
             margin: 0;
-            padding: 0; /* Removido padding que causava scroll */
-            
-            /* [MUDANÇA 1] Trava a altura exatamente na tela visível */
-            height: 100vh; /* Fallback para navegadores antigos */
-            height: 100svh; /* A MÁGICA: Altura exata da tela visível no mobile */
-            
-            /* [GLASSCARD] Fundo degradê para realçar o efeito de vidro */
+            padding: 0;
+            min-height: 100vh;
             background: linear-gradient(135deg, var(--cor-fundo-base) 0%, #f7e9d7 100%); 
             color: var(--cor-texto-principal);
             text-align: center;
-            
-            /* [MUDANÇA 2] Proíbe a barra de rolagem (overflow-x já estava) */
-            overflow: hidden; 
-            
+            overflow-x: hidden;
             transition: background-color 0.3s ease;
-            
-            /* [TILT] Perspective é movida para o body (cenário 3D) */
             perspective: 1000px; 
-            
-            /* [MUDANÇA 3] O display:flex já faz a centralização (padding removido) */
+            padding-top: 5vh; 
+            padding-bottom: 5vh;
             display: flex; 
             align-items: center; 
             justify-content: center; 
         }
         
         /* [FLIP] 1. O WRAPPER EXTERNO (CHASSI DO TILT) */
-        /* Este wrapper cuida do balanço (Tilt) e do tamanho do card */
         .tilt-wrapper {
             max-width: 500px;
             width: 90%;
-            margin: 0 auto; /* Centraliza o card */
-            
-            /* [TILT] Transição e estilo 3D para o balanço */
+            margin: 0 auto; 
             transition: transform 0.4s ease-out;
             transform-style: preserve-3d;
         }
 
         /* [FLIP] 2. O MIOLO QUE GIRA (FLIP) */
-        /* Este container cuida do giro (Flip) de 180 graus */
         .container-flipper {
             position: relative;
             width: 100%;
-            /* A altura será definida pelo conteúdo do .card-front */
-            
-            /* [FLIP] Transição e estilo 3D para o giro */
             transition: transform 0.8s cubic-bezier(.17,.84,.44,1);
             transform-style: preserve-3d;
-            cursor: pointer; /* Indica que é clicável */
+            cursor: pointer; 
         }
         
-        /* [FLIP] Classe que o JS adiciona para girar */
         .container-flipper.is-flipped {
             transform: rotateY(180deg);
         }
 
         /* [FLIP] 3. AS FACES (FRENTE E VERSO) */
-        /* Base comum para as duas faces (onde fica o glassmorphism) */
         .card-face {
-            /* [GLASSCARD] Efeito de vidro */
             background-color: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
-            
             padding: 50px 40px;
             border-radius: 12px;
-            
-            /* [FLIP] Propriedade MÁGICA para o efeito de virar */
             backface-visibility: hidden;
-            
-            /* Garante que o padding não estoure o tamanho */
             box-sizing: border-box; 
-            
             transition: box-shadow 0.4s ease-out, background-color 0.3s ease;
         }
         
@@ -110,29 +84,24 @@
         
         /* [FLIP] A FACE DA FRENTE */
         .card-front {
-            position: relative; /* Define a altura do conjunto */
+            position: relative; 
             z-index: 2;
         }
 
         /* [FLIP] A FACE DE TRÁS */
         .card-back {
-            position: absolute; /* Ocupa o espaço do .card-front */
+            position: absolute; 
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            
-            /* [FLIP] Já começa virada para trás */
             transform: rotateY(180deg); 
-            
-            /* Estilos para centralizar o conteúdo do verso */
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
         }
 
-        /* [FLIP] Estilo de exemplo para o conteúdo do verso */
         .card-back h2 {
             font-family: var(--font-titulo);
             font-size: 2rem;
@@ -143,8 +112,6 @@
             font-size: 1.1rem;
             text-align: center;
         }
-        /* [FLIP] Fim das mudanças estruturais do CSS */
-
 
         .coroa-icon {
             font-size: 3.5rem;
@@ -157,6 +124,15 @@
         .coroa-icon i.fa-pagelines {
             color: var(--cor-ewe-verde); 
         }
+
+        /* [CORREÇÃO 1] CSS PARA A IMAGEM NO VERSO */
+        .card-back-image {
+            max-width: 250px; /* Limita o tamanho máximo */
+            width: 100%;
+            height: auto; /* Mantém a proporção correta */
+            margin-bottom: 15px; /* Espaçamento igual ao do ícone */
+        }
+
 
         @keyframes pulse-glow {
             0% { opacity: 1; transform: scale(1); }
@@ -268,9 +244,8 @@
         @media (max-width: 768px) {
             
             body {
-                /* [MUDANÇA 4] O padding lateral de 20px no body não é mais necessário */
-                /* padding-left: 20px; */
-                /* padding-right: 20px; */
+                padding-left: 20px; 
+                padding-right: 20px;
             }
             
             h1 {
@@ -281,7 +256,6 @@
                 text-align: justify;
             }
             
-            /* [FLIP] Ajuste de padding mobile */
             .card-face {
                 padding: 40px 20px;
             }
@@ -290,5 +264,118 @@
 </head>
 <body>
 
+    <div class="tilt-wrapper" id="tilt-wrapper">
+        
+        <div class="container-flipper" id="flip-container">
+            
+            <div class="card-face card-front">
+                
+                <div class="coroa-icon">
+                    <i class="fa-brands fa-pagelines"></i> 
+                </div> 
+
+                <h1>Afrotunde</h1>
+                <h2>O Seu Santuário Digital de Beleza Ancestral</h2>
+                
+                <p>
+                    <b>Chegou a hora de coroar o Ori!</b> Estamos finalizando cada detalhe <b>premium</b> da nossa página pra que sua experiência seja tão divina quanto um <b>dreadlock</b>, uma <b>trança nagô</b> ou um <b>penteado style</b> bem feito.
+                    <br><br>
+                    Aqui é sobre celebrar quem somos — pretos, potentes e cheios de <b>Axé</b>. O brilho do nosso cabelo e a força da nossa coroa são símbolos do nosso poder e da nossa ancestralidade em movimento.
+                </p>
+                
+                <p>
+                    O Santuário Digital nasce com amor, tecnologia e propósito: crescer juntos, fortalecer a cada talento preto que faz a revolução acontecer — com arte, código e coração.
+                    <span class="axe-final">Axé!</span>
+                </p>
+                
+                <div class="cta-contato">
+                    <p>para <span class="iscas-visuais">agendamentos</span>:</p>
+                    <a href="https://www.instagram.com/afrotunde/" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-instagram"></i> @afrotunde
+                    </a>
+                </div>
+                
+                <p class="dev-info">
+                    <span class="hashtag-info">#BlackGirlMagic | #CrespoÉLindo</span>
+                    Um projeto premium, criado por: 
+                    <a href="https://www.instagram.com/pablit0rg/" target="_blank" rel="noopener noreferrer">@pablit0rg</a>
+                </p>
+            </div>
+            
+            <div class="card-face card-back">
+                
+                <h2>Conecte-se</h2>
+                <p>
+                    O futuro é ancestral e digital.
+                    <br>
+                    Em breve, o santuário completo.
+                </p>
+                
+                <img src="33756337_8075276.svg" alt="Ilustração Afrotunde" class="card-back-image">
+                
+                <p class="dev-info">
+                    (Toque para voltar)
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            const tiltWrapper = document.getElementById('tilt-wrapper'); 
+            if (tiltWrapper) {
+                const maxTilt = 5; 
+                const transitionDuration = '0.4s';
+
+                const applyTilt = (rotateX, rotateY) => {
+                    tiltWrapper.style.transition = 'transform ' + transitionDuration + ' ease-out';
+                    tiltWrapper.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                };
+
+                const resetTilt = () => {
+                    tiltWrapper.style.transition = 'transform 0.6s cubic-bezier(.17,.84,.44,1)';
+                    tiltWrapper.style.transform = 'rotateX(0deg) rotateY(0deg)';
+                };
+
+                const isMobile = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+
+                if (window.DeviceOrientationEvent && isMobile) {
+                    window.addEventListener('deviceorientation', (event) => {
+                        let tiltX = event.beta; 
+                        let tiltY = event.gamma;
+                        
+                        tiltX = Math.min(Math.max(tiltX, -45), 45);
+                        tiltY = Math.min(Math.max(tiltY, -45), 45);
+                        
+                        let rotateX = (tiltX / 45) * -maxTilt;
+                        let rotateY = (tiltY / 45) * maxTilt; 
+                        
+                        applyTilt(rotateX, rotateY);
+                    });
+                } else { 
+                    tiltWrapper.addEventListener('mousemove', (e) => {
+                        const rect = tiltWrapper.getBoundingClientRect();
+                        const x = (e.clientX - rect.left) / rect.width - 0.5;
+                        const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+                        const rotateX = y * (-maxTilt * 2); 
+                        const rotateY = x * (maxTilt * 2); 
+                        
+                        applyTilt(rotateX, rotateY);
+                    });
+                    tiltWrapper.addEventListener('mouseleave', resetTilt);
+                }
+            }
+            
+            const flipContainer = document.getElementById('flip-container');
+            if (flipContainer) {
+                flipContainer.addEventListener('click', () => {
+                    flipContainer.classList.toggle('is-flipped');
+                });
+            }
+            
+        });
+    </script>
 </body>
 </html>
