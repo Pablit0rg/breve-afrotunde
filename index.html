@@ -40,7 +40,7 @@
             display: flex; 
             align-items: center; 
             justify-content: center; 
-            box-sizing: border-box; /* Adicionado para melhor cálculo em mobile */
+            box-sizing: border-box;
         }
         
         /* [FLIP] 1. O WRAPPER EXTERNO (CHASSI DO TILT) */
@@ -76,7 +76,7 @@
             backface-visibility: hidden;
             box-sizing: border-box; 
             transition: box-shadow 0.4s ease-out, background-color 0.3s ease;
-            width: 100%; /* Garantia de largura */
+            width: 100%;
         }
         
         .tilt-wrapper:hover .card-face {
@@ -285,12 +285,12 @@
         @media (max-width: 768px) {
             
             body {
-                padding-left: 5px; /* Reduz padding para caber mais */
+                padding-left: 5px;
                 padding-right: 5px;
             }
 
             .tilt-wrapper {
-                width: 95%; /* Ocupa mais a tela */
+                width: 95%;
             }
             
             h1 {
@@ -302,7 +302,7 @@
             }
             
             .card-face {
-                padding: 40px 25px; /* Ajusta padding interno */
+                padding: 40px 25px;
             }
             
             .dev-info {
@@ -312,7 +312,7 @@
 
         @media (max-width: 380px) {
              .card-face {
-                padding: 30px 15px; /* Mais redução para telas mínimas */
+                padding: 30px 15px;
             }
             h1 {
                 font-size: 2.2rem;
@@ -325,7 +325,7 @@
             }
             .cta-contato p {
                 font-size: 1rem;
-                flex-direction: column; /* Coloca o link abaixo em telas muito pequenas */
+                flex-direction: column;
                 gap: 5px;
             }
         }
