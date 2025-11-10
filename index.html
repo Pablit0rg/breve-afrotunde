@@ -16,6 +16,7 @@
         :root {
             --cor-fundo-base: #fcfaf5;
             --cor-texto-principal: #3f3a34;
+            --cor-texto-secundario: #6b6259; /* NOVA COR: Grafite suave */
             --cor-destaque-ori: #b78972;
             --cor-acento-secundario: #f0b8aa;
             --cor-ewe-verde: #4a5c4a;
@@ -171,16 +172,19 @@
             font-weight: 500;
         }
 
-        p {
+        /* TEXTO PRINCIPAL AGORA COM COR SECUNDÁRIA (GRAFITE) */
+        .card-front p {
             font-size: 1.1rem; 
             line-height: 1.6;
             margin-bottom: 20px;
-            color: var(--cor-texto-principal);
+            color: var(--cor-texto-secundario); /* MUDANÇA: Grafite suave */
             text-align: justify;
         }
         
-        b {
+        /* MANTÉM AS PALAVRAS EM NEGRITO COM A COR PRINCIPAL (PRETO) */
+        .card-front b {
             font-weight: 700;
+            color: var(--cor-texto-principal); /* MUDANÇA: Preto original */
         }
 
         .cta-contato {
@@ -265,7 +269,7 @@
             h1 {
                 font-size: 2.5rem; 
             }
-            p {
+            .card-front p {
                 font-size: 1.1rem;
                 text-align: justify;
             }
